@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AnalogClockFragment"
-    android:background="@color/colorClockBg">
+    android:background="@color/colorClockBg"
+    tools:context=".AnalogClockFragment">
 
     <com.banana.y17_2.clock.AnalogClockView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/analogClockView1"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2" />
 
-</RelativeLayout>
+
+    <com.banana.y17_2.clock.AnalogClockView
+        android:id="@+id/analogClockView2"
+        android:layout_width="192dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="192dp" />
+
+
+</android.support.constraint.ConstraintLayout>
