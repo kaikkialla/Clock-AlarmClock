@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -146,14 +147,17 @@ public class AnalogClockView extends View {
         drawHand(canvas, HandType.MINUTE_ARROW, -secondDegrees + minuteDegrees);
         }
 
+    public void setTimeZone(TimeZone value) {
+        mCalendar.setTimeZone(value);
+    }
 
 
     public enum HandType{
 
-        HOURS_ARROW(.001f), MINUTE_ARROW(.002f), SECOND_ARROW(.003f);
-        private final float mlenght;
+        HOURS_ARROW(60), MINUTE_ARROW(70), SECOND_ARROW(80);
+        private final int mlenght;
 
-        HandType(float lenght) {
+        HandType(int lenght) {
             mlenght = lenght;
         }
 
@@ -167,9 +171,9 @@ public class AnalogClockView extends View {
 
 
         if(handType.equals(HandType.HOURS_ARROW) | handType.equals(HandType.MINUTE_ARROW)) {
-            canvas.drawLine(mCenterX, mCenterY, mCenterY, mCenterY - handType.getLenght(), ArrowPaint);
+            canvas.drawLine(mCenterX, mCenterY, mCenterX, mCenterY - handType.getLenght(), ArrowPaint);
         } else if(handType.equals(HandType.SECOND_ARROW)){
-            canvas.drawLine(mCenterX, mCenterY, mCenterY, mCenterY - handType.getLenght() * mRadius, SecondArrowPaint);
+            canvas.drawLine(mCenterX, mCenterY, mCenterX, mCenterY - handType.getLenght(), SecondArrowPaint);
         }
     }
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorClockBg"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/Alarm_Clock_Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7:30"
+        android:textSize="28dp"
+        android:textColor="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/Alarm_Clock_Day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Alarm_Clock_Time"
+        android:text="Mo Tu Wd"
+        android:textColor="@android:color/darker_gray"/>
+
+
+
+    <CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/Alarm_Clock_Status_Checkbox"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:button="@null"
+        android:checked="false"
+        android:clickable="false"
+        android:drawableRight="@animator/checkbox_selector"
+        android:focusable="false"
+        android:textColor="@android:color/holo_green_dark"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>
