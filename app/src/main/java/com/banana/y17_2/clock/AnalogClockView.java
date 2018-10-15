@@ -1,6 +1,7 @@
 package com.banana.y17_2.clock;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
@@ -44,24 +45,24 @@ public class AnalogClockView extends View {
 
     public AnalogClockView(Context context) {
         super(context);
-        initialize();
+        initialize(context, null);
     }
 
 
     public AnalogClockView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        initialize();
+        initialize(context, attrs);
     }
 
     public AnalogClockView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initialize();
+        initialize(context, attrs);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public AnalogClockView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initialize();
+        initialize(context, attrs);
     }
 
     @Override
@@ -77,11 +78,27 @@ public class AnalogClockView extends View {
     }
 
 
-    public void initialize(){
+    public void initialize(Context context, AttributeSet attrs){
+        mCalendar = Calendar.getInstance();
+        //Считываем аргументы
+        final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AnalogClockView);
+
+        for(int i = 0; i < typedArray.length(); i++) {
+            final int id = typedArray.getIndex(i);
+            switch (id) {
+                case R.styleable.AnalogClockView_Tiget_timeZone:
+                    final String timeZone = typedArray.getString(id);
+                    setTimeZone(TimeZone.getTimeZone(timeZone));
+                    break;
+                default:
+                    break;
+            }
+        }
+        typedArray.recycle();
+
         colorClockMain = this.getResources().getColor(R.color.colorClockMain);
         colorClockBg = this.getResources().getColor(R.color.colorClockBg);
         colorSecondArrow = this.getResources().getColor(R.color.colorSecondArrow);
-        mCalendar = Calendar.getInstance();
 
 
         HUDPaint = new Paint();
@@ -106,6 +123,7 @@ public class AnalogClockView extends View {
         SecondArrowPaint.setStrokeWidth(8);
         SecondArrowPaint.setAntiAlias(true);
         SecondArrowPaint.setColor(colorSecondArrow);
+
 
         final Handler handler = new Handler();
         Timer timer = new Timer();
@@ -154,7 +172,7 @@ public class AnalogClockView extends View {
 
     public enum HandType{
 
-        HOURS_ARROW(60), MINUTE_ARROW(70), SECOND_ARROW(80);
+        HOURS_ARROW(50), MINUTE_ARROW(100), SECOND_ARROW(130);
         private final int mlenght;
 
         HandType(int lenght) {

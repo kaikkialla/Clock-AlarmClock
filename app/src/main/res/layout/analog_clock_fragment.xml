@@ -7,21 +7,51 @@
     android:background="@color/colorClockBg"
     tools:context=".AnalogClockFragment">
 
-    <com.banana.y17_2.clock.AnalogClockView
-        android:id="@+id/analogClockView1"
-        android:layout_width="192dp"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2" />
-
-
-    <com.banana.y17_2.clock.AnalogClockView
-        android:id="@+id/analogClockView2"
+    <RelativeLayout
         android:layout_width="192dp"
         android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline2">
+
+        <com.banana.y17_2.clock.AnalogClockView
+            android:id="@+id/analogClockView1"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            app:Tiget_timeZone="GMT+3"/>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="64dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="192dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2">
+
+        <com.banana.y17_2.clock.AnalogClockView
+            android:id="@+id/analogClockView2"
+            android:layout_width="192dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:Tiget_timeZone="GMT+9"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="64dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"

@@ -33,8 +33,10 @@ public class AlarmClockFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (checkBox.getTag().equals("unchecked")) {
+                    //TODO
                     checkBox.setTag("checked");
                 } else if(checkBox.getTag().equals("checked")){
+                    //TODO
                     checkBox.setTag("unchecked");
                 }
             }
