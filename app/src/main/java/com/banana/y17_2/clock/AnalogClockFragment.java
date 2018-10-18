@@ -41,10 +41,15 @@ public class AnalogClockFragment extends Fragment {
         TextView textView2 = view.findViewById(R.id.textView2);
 
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT+9"));
         Date date = new Date();
 
-        textView2.setText("Moscow" + String.valueOf(formatter.format(date)));
-        textView1.setText("Japan" + String.valueOf(formatter.format(date)));
+
+
+
+
+        //textView2.setText("Moscow" + String.valueOf(formatter.format(date)));
+        //textView1.setText("Japan" + String.valueOf(formatter.format(date)));
 
     }
 }

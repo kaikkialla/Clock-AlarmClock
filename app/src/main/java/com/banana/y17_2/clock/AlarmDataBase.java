@@ -7,10 +7,11 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlarmDataBase {
-    private List<Alarm> mAlarm;
+    private List<Alarm> mAlarm = new ArrayList<>();
     private Context mContext;
 
 
@@ -47,6 +48,7 @@ public class AlarmDataBase {
         //TODO
 
         mAlarm.add(alarm);
+
         save();
     }
 
@@ -67,6 +69,11 @@ public class AlarmDataBase {
 
     }
 
+    public List<Alarm> getmAlarm() {
+        return mAlarm;
+    }
 
-
+    public void clear() {
+        mAlarm.clear();
+    }
 }

@@ -5,7 +5,7 @@ public class Alarm {
     final long timeStamp;
     final long id;
 
-    public Alarm(String title, long timeStamp, long id) {
+    public Alarm(long timeStamp, String title, long id) {
         this.title = title;
         this.timeStamp = timeStamp;
         this.id = id;

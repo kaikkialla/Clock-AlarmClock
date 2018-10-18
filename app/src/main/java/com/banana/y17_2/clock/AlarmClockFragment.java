@@ -26,9 +26,9 @@ public class AlarmClockFragment extends Fragment {
         final Context context = getContext();
         View view = inflater.inflate(R.layout.alarm_clock_fragment, container, false);
         bottomNavigationView = view.findViewById(R.id.bottom_navigation_view);
-        checkBox = view.findViewById(R.id.Alarm_Clock_Status_Checkbox);
-        checkBox.setTag("unchecked");
-
+        //checkBox = view.findViewById(R.id.Alarm_Clock_Status_Checkbox);
+        //checkBox.setTag("unchecked");
+/*
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,7 +41,7 @@ public class AlarmClockFragment extends Fragment {
                 }
             }
         });
-
+*/
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
