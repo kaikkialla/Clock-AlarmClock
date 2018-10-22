@@ -27,6 +27,10 @@ public class AlarmDataBase {
         final Gson gson = new Gson();
         mAlarm = gson.fromJson(s, new TypeToken<List<Alarm>>(){}.getType());
 
+        if(changeListener != null) {
+            changeListener.onChange(mAlarm);
+        }
+
     }
 
 
@@ -40,14 +44,31 @@ public class AlarmDataBase {
         editor.putString("ALARMS", s);
         editor.apply();
 
+        if(changeListener != null) {
+            changeListener.onChange(mAlarm);
+        }
+
 
     }
 
+    private ChangeListener changeListener = null;
+
+    interface ChangeListener{
+        void onChange(List<Alarm> alarms);
+    }
+
+    public void setOnChangeListener(ChangeListener listener) {
+        changeListener = listener;
+    }
+
+
 
     public void addAlarm(Alarm alarm) {
-        //TODO
-
         mAlarm.add(alarm);
+
+        if(changeListener != null) {
+            changeListener.onChange(mAlarm);
+        }
 
         save();
     }
@@ -67,13 +88,25 @@ public class AlarmDataBase {
             save();
         }
 
+        if(changeListener != null) {
+            changeListener.onChange(mAlarm);
+        }
     }
 
-    public List<Alarm> getmAlarm() {
+
+    public List<Alarm> getAlarm() {
         return mAlarm;
     }
 
+
     public void clear() {
         mAlarm.clear();
+        if(changeListener != null) {
+            changeListener.onChange(mAlarm);
+        }
     }
+
+
+
+    
 }

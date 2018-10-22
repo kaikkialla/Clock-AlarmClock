@@ -23,6 +23,7 @@
             android:textSize="20dp"/>
 
         <ImageView
+            android:id="@+id/Add_Alarm_Button"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_add_black_24dp"

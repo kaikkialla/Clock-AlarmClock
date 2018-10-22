@@ -12,14 +12,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+/*
         viewPager = findViewById(R.id.View_Pager);
         final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
-/*
+*/
         if(savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.Frame_Layout, new AnalogClockFragment(), null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.Frame_Layout, new AlarmClockFragment(), null).commit();
         }
-        */
+
     }
 }

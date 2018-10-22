@@ -1,9 +1,17 @@
 package com.banana.y17_2.clock;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<ViewHolder>{
     MainActivity activity;
+    private List<Alarm> mAlarm = new ArrayList<>();
 
     public Adapter(MainActivity activity) {
         this.activity = activity;
@@ -12,45 +20,42 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(activity);
-        View v = inflater.inflate(R.layout.price_layout, parent, false );
+        View v = inflater.inflate(R.layout.recycler_view_row, parent, false );
         ViewHolder vh = new ViewHolder(v);
+
+
         return vh;
 
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        final CurrencyConstructor curr = DataBase.currencyArr.get(position);
-        //заполняем поля макета
-        String date = "Date:  " + curr.date;
-        holder.date.setText(date);
-        String PriceString = "Price:  " + curr.price;
-        holder.price.setText(PriceString);
-        String CurrencyString = "Currency:  " + curr.currency;
-        holder.curren.setText(CurrencyString);
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        final Alarm alarm = mAlarm.get(position);
+        viewHolder.AlarmClockDay.setText(String.valueOf(alarm.getDay()));
 
+        if (alarm.getMinute() == 00) {
+            viewHolder.AlarmClockTime.setText(alarm.getHour() + ":00" );
+        } else viewHolder.AlarmClockTime.setText(alarm.getHour() + ":" + alarm.getMinute());
 
-        //при нажатии на макет откроется фрагмент с информацией о определенной валюте
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showCoinFragment(curr);
-            }
-        });
     }
+
 
     @Override
     public int getItemCount() {
-        return DataBase.currencyArr.size();
+        return 4;
 
     }
-    //метод, рисующий фрагмент с иформацией о валюте
-    private void showCoinFragment(CurrencyConstructor curr) {
-        ActionBarFragment fragment = ActionBarFragment.newInstance(curr);
-        activity.getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.FrameLayout, fragment).commit();
 
+    public void swap(List<Alarm> alarm) {
+        if (alarm != null) {
+            mAlarm.clear();
+            mAlarm.addAll(alarm);
+
+            notifyDataSetChanged();
+        }
     }
+
+
+
 
 }
