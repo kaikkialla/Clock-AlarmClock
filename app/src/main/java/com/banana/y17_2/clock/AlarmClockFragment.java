@@ -45,6 +45,7 @@ public class AlarmClockFragment extends Fragment {
 
 
         alarmDataBase = new AlarmDataBase();
+        alarmDataBase.initialize(context);
         alarmDataBase.setOnChangeListener(new AlarmDataBase.ChangeListener() {
             @Override
             public void onChange(List<Alarm> alarms) {
