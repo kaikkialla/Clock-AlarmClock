@@ -20,7 +20,7 @@
             app:Tiget_timeZone="GMT+3"/>
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textViewFst"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="64dp"
@@ -44,7 +44,7 @@
             app:Tiget_timeZone="GMT+9"/>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewSec"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="64dp"

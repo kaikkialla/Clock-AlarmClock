@@ -37,8 +37,6 @@ public class AnalogClockFragment extends Fragment {
         AnalogClockView clockView1 = view.findViewById(R.id.analogClockView1);
         AnalogClockView clockView2 = view.findViewById(R.id.analogClockView2);
 
-        TextView textView1 = view.findViewById(R.id.textView1);
-        TextView textView2 = view.findViewById(R.id.textView2);
 
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
         formatter.setTimeZone(TimeZone.getTimeZone("GMT+9"));

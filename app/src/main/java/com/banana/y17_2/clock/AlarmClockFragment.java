@@ -5,9 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +31,7 @@ public class AlarmClockFragment extends Fragment {
     private AlarmDataBase alarmDataBase;
     List<Alarm> alarms;
     ImageView AddAlarmButton;
+    String DIALOG_TIME = "time";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +60,13 @@ public class AlarmClockFragment extends Fragment {
         AddAlarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alarmDataBase.addAlarm(new Alarm(5, "Test Alarm 1", 5, 12, 7));
+                //ОТКРЫВАЕМ ФРАГМЕНТ С ДОБАВЛЕНИЕМ БУДИЛЬНИКА
+
+
+                DialogFragment newFragment  = new AddAlarmFragment();
+                //newFragment.show(getActivity().getFragmentManager(), DIALOG_TIME);
+                FragmentManager fragmentManager = getFragmentManager();
+                newFragment.show(fragmentManager, DIALOG_TIME);
 
             }
         });
@@ -67,6 +77,7 @@ public class AlarmClockFragment extends Fragment {
         alarms.add(new Alarm(3, "Test Alarm 3", 23,34, 3));
         alarms.add(new Alarm(4, "Test Alarm 4", 17, 00,4));
         adapter.swap(alarms);
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -90,5 +101,6 @@ public class AlarmClockFragment extends Fragment {
 
         return view;
     }
+
 
 }
