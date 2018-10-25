@@ -27,11 +27,11 @@ import java.util.List;
 public class AlarmClockFragment extends Fragment {
 
     BottomNavigationView bottomNavigationView;
-    CheckBox checkBox;
     private AlarmDataBase alarmDataBase;
     List<Alarm> alarms;
     ImageView AddAlarmButton;
-    String DIALOG_TIME = "time";
+    String DIALOG_TIME = "a";
+    Adapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class AlarmClockFragment extends Fragment {
         AddAlarmButton = view.findViewById(R.id.Add_Alarm_Button);
 
 
-        final Adapter adapter = new Adapter((MainActivity) getActivity());
+        adapter = new Adapter((MainActivity) getActivity());
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 1));
@@ -60,14 +60,15 @@ public class AlarmClockFragment extends Fragment {
         AddAlarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ОТКРЫВАЕМ ФРАГМЕНТ С ДОБАВЛЕНИЕМ БУДИЛЬНИКА
-
-
+                Toast.makeText(context, String.valueOf(System.currentTimeMillis()), Toast.LENGTH_SHORT).show();
+                Log.e("current", String.valueOf(System.currentTimeMillis()));
+                //alarmDataBase.addAlarm(new Alarm(5, "Test Alarm 1", 5, 12, 7));
+/*
                 DialogFragment newFragment  = new AddAlarmFragment();
                 //newFragment.show(getActivity().getFragmentManager(), DIALOG_TIME);
                 FragmentManager fragmentManager = getFragmentManager();
                 newFragment.show(fragmentManager, DIALOG_TIME);
-
+*/
             }
         });
 
@@ -102,6 +103,19 @@ public class AlarmClockFragment extends Fragment {
         return view;
     }
 
+/*
+    @Override
+    public void onResume() {
+        super.onResume();
+        alarmDataBase.setOnChangeListener(new AlarmDataBase.ChangeListener() {
+            @Override
+            public void onChange(List<Alarm> alarms) {
+                adapter.swap(alarms);
+            }
+        });
+        adapter.swap(alarmDataBase.getAlarm());
+    }
+*/
 
 }
 

@@ -118,7 +118,6 @@ public class AnalogClockView extends View {
         ArrowPaint.setStrokeWidth(8);
         ArrowPaint.setAntiAlias(true);
         ArrowPaint.setColor(colorClockMain);
-
         SecondArrowPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         SecondArrowPaint.setStrokeWidth(8);
         SecondArrowPaint.setAntiAlias(true);
